@@ -64,6 +64,91 @@ button:focus-visible,th[data-k]:focus-visible,.seg input:focus-visible+label,pat
 .prog{height:5px;background:var(--empty);border-radius:3px;overflow:hidden;margin-top:6px}
 .prog i{display:block;height:100%;background:var(--ink);transition:width .6s}
 
+
+/* corrida */
+.race{--ink:#e8edf3;--muted:#93a0af;--line:#2b3541;--empty:#232d39;--surface:#141b24;--pl:#6c97ff;--pt:#ff6a62;--ok:#4cc38a;
+  color:var(--ink);background:radial-gradient(120% 90% at 0% 0%,#1c2634 0%,#0f151c 60%);border:1px solid #2b3541;border-radius:16px;padding:16px;margin-bottom:16px}
+.race-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.live{display:inline-flex;gap:7px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.04em;padding:4px 10px;border-radius:999px;background:#2a1517;color:#ff7a72;border:1px solid #5a2a2c}
+.live i{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1.6s ease-in-out infinite}
+.live.final{background:#112a1f;color:#4cc38a;border-color:#1f5a40} .live.final i{animation:none}
+.live.wait{background:#222a35;color:#93a0af;border-color:#33404f} .live.wait i{animation:none}
+@keyframes pulse{50%{opacity:.25;transform:scale(.7)}}
+.race-status{font-size:13.5px;color:var(--muted);flex:1;min-width:200px}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.bd{min-width:0;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid #2b3541}
+.bd.r{text-align:right}
+.bd .nm{font-size:13px;font-weight:600;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.bd.r .nm{justify-content:flex-end}
+.bd .pct{font-size:clamp(38px,11vw,70px);font-weight:800;font-stretch:78%;line-height:1;letter-spacing:-.02em;margin:6px 0 2px}
+.bd .vt{color:var(--muted);font-size:13px}
+.gr{font-size:12.5px;margin-top:3px;font-weight:600}
+.gr.up{color:var(--ok)} .gr.dn{color:var(--pt)} .gr.na{color:var(--muted);font-weight:500}
+.elected{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--ok);color:#06210f;margin-top:6px}
+.road{background:#12171e;border:1px solid #2b3541;border-radius:14px;padding:10px 12px;position:relative}
+.rw{position:relative}
+.lane{position:relative;height:58px;--p:0}
+.lane+.lane{border-top:2px dashed rgba(255,255,255,.25)}
+.lane::before{content:"";position:absolute;left:0;top:50%;height:5px;margin-top:-2.5px;border-radius:3px;width:calc(var(--p)*(100% - 76px));
+  background:linear-gradient(90deg,transparent,var(--c));opacity:.55;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.lane.f{--c:var(--pl)} .lane.l{--c:var(--pt)}
+.car{position:absolute;top:50%;left:calc(var(--p)*(100% - 76px));width:76px;margin-top:-19px;color:var(--c);
+  transition:left 1.4s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.lane.lead .car{filter:drop-shadow(0 0 8px var(--c)) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.car svg{display:block;width:76px;height:38px}
+.car .num{position:absolute;left:0;right:0;top:11px;text-align:center;font-size:11px;font-weight:800;color:#fff;letter-spacing:.02em;pointer-events:none}
+.rank{position:absolute;right:-4px;top:-16px;font-size:11px;font-weight:800;min-width:22px;height:22px;line-height:22px;text-align:center;border-radius:11px;
+  background:#e8edf3;color:#111b27;border:2px solid var(--c)}
+.finish{position:absolute;top:-8px;bottom:-8px;width:12px;left:calc(.6*(100% - 76px) + 76px);transform:translateX(-50%);border-radius:2px;
+  background:repeating-conic-gradient(#f4f4f4 0 25%,#15191f 0 50%) 0 0/6px 6px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.axis{position:relative;height:22px;margin-top:6px}
+.axis span{position:absolute;top:0;transform:translateX(-50%);font-size:11px;color:var(--muted);white-space:nowrap}
+.axis span.m{color:#fff;font-weight:700}
+.gap{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{font-size:13px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid #2b3541;color:var(--ink)}
+.pill b{font-weight:700}
+.pill.photo{background:#2e2410;border-color:#6b5320;color:#f2c25a}
+.pill.upc{color:var(--pl)} .pill.upt{color:var(--pt)}
+.states{margin-top:14px}
+.st-hd{display:flex;justify-content:space-between;gap:8px;font-size:13px;margin-bottom:6px;flex-wrap:wrap}
+.st-hd .pl{color:var(--pl);font-weight:700} .st-hd .pt{color:var(--pt);font-weight:700} .st-hd .mid{color:var(--muted)}
+.st-bar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--empty);gap:2px}
+.st-bar i{display:block;height:100%;transition:flex-grow .8s}
+.race .meters{margin-top:16px}
+@media(max-width:420px){.car{width:68px;margin-top:-17px}.car svg{width:68px;height:34px}.car .num{top:9px;font-size:10px}
+  .lane::before{width:calc(var(--p)*(100% - 68px))}.car{left:calc(var(--p)*(100% - 68px))}.finish{left:calc(.6*(100% - 68px) + 68px)}}
+
+
+/* análises */
+.sec-h{font-size:18px;font-weight:750;margin:6px 0 12px;letter-spacing:-.01em}
+.acards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-bottom:16px}
+.acards .panel{margin-bottom:0}
+.acards h3{margin:0 0 4px;font-size:15px;font-weight:700}
+.acards .lede{font-size:13px;color:var(--muted);margin:0 0 12px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.kpi b{display:block;font-size:20px;font-weight:750;font-stretch:85%}
+.kpi span{font-size:12px;color:var(--muted)}
+.warn{font-size:12.5px;color:var(--warn);border:1px solid var(--warn);border-radius:8px;padding:7px 10px;margin:0 0 12px}
+.stack{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--empty);gap:2px;margin:4px 0}
+.stack i{display:block;height:100%}
+.sl{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:8px}
+.dual{position:relative;display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--empty);gap:1px}
+.dual i{display:block;height:100%}
+.reg{padding:9px 0;border-top:1px solid var(--line)}
+.reg:first-of-type{border-top:0;padding-top:0}
+.reg .rh{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;margin-bottom:5px}
+.reg .rd{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-top:4px}
+.lst{list-style:none;margin:0;padding:0}
+.lst li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px}
+.lst li:first-child{border-top:0}
+.lst .v{color:var(--muted);text-align:right;white-space:nowrap}
+.lst .pl{color:var(--pl);font-weight:700} .lst .pt{color:var(--pt);font-weight:700}
+.sub3{font-size:12.5px;font-weight:700;color:var(--muted);margin:12px 0 2px}
+.mini{width:100%;border-collapse:collapse;font-size:13px}
+.mini th,.mini td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:right;position:static;background:none}
+.mini th:first-child,.mini td:first-child{text-align:left}
+
 /* mapa */
 .grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:16px}
 @media(max-width:900px){.grid{grid-template-columns:1fr}}
@@ -139,18 +224,20 @@ footer code{word-break:break-all}
 
   <div class="errbox" id="errbox" role="alert"></div>
 
-  <section class="panel" aria-label="Placar nacional">
-    <p class="status" id="statusLine">Aguardando dados do TSE…</p>
-    <div class="score">
-      <div class="cand">
+  <section class="race" aria-label="Corrida presidencial">
+    <div class="race-top">
+      <span class="live wait" id="liveBadge"><i></i><b id="liveTxt">LARGADA</b></span>
+      <span class="race-status" id="statusLine">Aguardando dados do TSE…</span>
+    </div>
+    <div class="board">
+      <div class="bd">
         <div class="nm"><i class="sw" style="background:var(--pl)"></i>Flávio Bolsonaro · PL</div>
         <div class="pct" id="pctF" style="color:var(--pl)">—</div>
         <div class="vt" id="votF">—</div>
         <div class="gr na" id="grF">—</div>
         <div id="elF"></div>
       </div>
-      <div class="mid">votos<br>válidos</div>
-      <div class="cand r">
+      <div class="bd r">
         <div class="nm">Lula · PT<i class="sw" style="background:var(--pt)"></i></div>
         <div class="pct" id="pctL" style="color:var(--pt)">—</div>
         <div class="vt" id="votL">—</div>
@@ -158,8 +245,24 @@ footer code{word-break:break-all}
         <div id="elL"></div>
       </div>
     </div>
-    <div class="split" aria-hidden="true"><i id="barF" style="width:50%;background:var(--pl)"></i><i id="barL" style="width:50%;background:var(--pt)"></i><span class="m50"></span></div>
-    <div class="lead" id="leadLine">—</div>
+    <div class="road" aria-hidden="true">
+      <div class="rw">
+        <div class="lane f" id="laneF"><div class="car"><svg viewBox="0 0 76 38" aria-hidden="true"><path fill="currentColor" d="M3 24c0-4.5 2.2-6.6 6.6-7.6l11-7.6C22.6 7.4 25 6.5 27.5 6.5h19c3.2 0 5.6.9 7.7 2.7l8.6 7.2c5.4.9 7.6 2.3 7.6 6.6v3.5c0 1.4-1 2.5-2.5 2.5H5.5C4 29 3 28 3 26.5z"/><path fill="#fff" fill-opacity=".85" d="M25 11.2h10.5v6H20.6zM38.5 11.2h8.6c1.3 0 2.2.4 3.2 1.2l4.2 3.6H38.5z"/><circle cx="21" cy="29.5" r="6" fill="#0b0f14" stroke="#cfd6de" stroke-width="2"/><circle cx="55" cy="29.5" r="6" fill="#0b0f14" stroke="#cfd6de" stroke-width="2"/></svg><span class="num">22</span><span class="rank" id="rkF">—</span></div></div>
+        <div class="lane l" id="laneL"><div class="car"><svg viewBox="0 0 76 38" aria-hidden="true"><path fill="currentColor" d="M3 24c0-4.5 2.2-6.6 6.6-7.6l11-7.6C22.6 7.4 25 6.5 27.5 6.5h19c3.2 0 5.6.9 7.7 2.7l8.6 7.2c5.4.9 7.6 2.3 7.6 6.6v3.5c0 1.4-1 2.5-2.5 2.5H5.5C4 29 3 28 3 26.5z"/><path fill="#fff" fill-opacity=".85" d="M25 11.2h10.5v6H20.6zM38.5 11.2h8.6c1.3 0 2.2.4 3.2 1.2l4.2 3.6H38.5z"/><circle cx="21" cy="29.5" r="6" fill="#0b0f14" stroke="#cfd6de" stroke-width="2"/><circle cx="55" cy="29.5" r="6" fill="#0b0f14" stroke="#cfd6de" stroke-width="2"/></svg><span class="num">13</span><span class="rank" id="rkL">—</span></div></div>
+        <div class="finish"></div>
+      </div>
+      <div class="axis"><span class="" style="left:calc(0.0000*(100% - 76px) + 76px)">35%</span><span class="" style="left:calc(0.2000*(100% - 76px) + 76px)">40%</span><span class="" style="left:calc(0.4000*(100% - 76px) + 76px)">45%</span><span class="m" style="left:calc(0.6000*(100% - 76px) + 76px)">50% · maioria</span><span class="" style="left:calc(0.8000*(100% - 76px) + 76px)">55%</span><span class="" style="left:calc(1.0000*(100% - 76px) + 76px)">60%</span></div>
+    </div>
+    <div class="gap">
+      <span class="pill" id="leadLine">—</span>
+      <span class="pill photo" id="photo" style="display:none">Foto de chegada</span>
+      <span class="pill upc" id="moF">Ritmo PL —</span>
+      <span class="pill upt" id="moL">Ritmo PT —</span>
+    </div>
+    <div class="states">
+      <div class="st-hd"><span class="pl"><b id="stF">0</b> estados à frente · PL</span><span class="mid">disputa por estados</span><span class="pt">PT · <b id="stL">0</b> estados à frente</span></div>
+      <div class="st-bar"><i id="sbF" style="background:var(--pl);flex-grow:0"></i><i id="sbM" style="flex-grow:27"></i><i id="sbL" style="background:var(--pt);flex-grow:0"></i></div>
+    </div>
     <div class="meters">
       <div class="meter"><b id="mSec">—</b><span>seções totalizadas</span><div class="prog"><i id="pSec" style="width:0"></i></div></div>
       <div class="meter"><b id="mComp">—</b><span>comparecimento</span><div class="prog"><i id="pComp" style="width:0"></i></div></div>
@@ -198,6 +301,9 @@ footer code{word-break:break-all}
       </section>
     </div>
   </div>
+
+  <h2 class="sec-h">Análises</h2>
+  <div class="acards" id="acards"><section class="panel"><p class="note">As análises aparecem quando começarem a chegar votos.</p></section></div>
 
   <section class="panel">
     <h2>Crescimento por estado (2º turno × 1º turno)</h2>
@@ -260,7 +366,7 @@ footer code{word-break:break-all}
     const vv = num(d.v?.vv) || (f + l);
     return { f, l, vv, pf: pc(f, vv), pl: pc(l, vv), eF, eL,
       tv: num(d.v?.tv), vb: num(d.v?.vb), vn: num(d.v?.vn),
-      te: num(d.e?.te), comp: num(d.e?.c), abs: num(d.e?.a),
+      te: num(d.e?.te), est: num(d.e?.est), comp: num(d.e?.c), abs: num(d.e?.a),
       ts: num(d.s?.ts), st: num(d.s?.st), pst: num(d.s?.pst) || pc(num(d.s?.st), num(d.s?.ts)),
       dg: d.dg, hg: d.hg, idg: d.idg };
   }
@@ -379,6 +485,7 @@ footer code{word-break:break-all}
   function renderNational() {
     const b = S.t2.br; if (!b) return;
     const d = derive('br');
+    const LO = 35, HI = 60, posOf = p => Math.max(0, Math.min(1, (p - LO) / (HI - LO)));
     $('pctF').textContent = b.vv ? fmt(b.pf, 2) + '%' : '—';
     $('pctL').textContent = b.vv ? fmt(b.pl, 2) + '%' : '—';
     $('votF').textContent = fmt(b.f) + ' votos';
@@ -386,21 +493,47 @@ footer code{word-break:break-all}
     growthLine($('grF'), d.df); growthLine($('grL'), d.dl);
     $('elF').innerHTML = b.eF ? '<span class="elected">Eleito</span>' : '';
     $('elL').innerHTML = b.eL ? '<span class="elected">Eleito</span>' : '';
-    $('barF').style.width = (b.vv ? b.pf : 50) + '%'; $('barL').style.width = (b.vv ? b.pl : 50) + '%';
+
+    // corrida
+    $('laneF').style.setProperty('--p', b.vv ? posOf(b.pf) : 0);
+    $('laneL').style.setProperty('--p', b.vv ? posOf(b.pl) : 0);
+    const fLead = b.vv && b.f > b.l, lLead = b.vv && b.l > b.f;
+    $('laneF').classList.toggle('lead', fLead); $('laneL').classList.toggle('lead', lLead);
+    $('rkF').textContent = !b.vv ? '—' : (b.f >= b.l ? '1º' : '2º');
+    $('rkL').textContent = !b.vv ? '—' : (b.l >= b.f ? '1º' : '2º');
+    const live = $('liveBadge');
+    live.className = 'live ' + (!b.vv ? 'wait' : b.pst >= 100 ? 'final' : '');
+    $('liveTxt').textContent = !b.vv ? 'LARGADA' : b.pst >= 100 ? 'RETA FINAL' : 'AO VIVO';
     if (!b.vv) {
-      $('statusLine').textContent = 'Apuração ainda não começou. O TSE divulga os resultados a partir das 17h (horário de Brasília).';
+      $('statusLine').textContent = 'Largada: o TSE divulga os resultados a partir das 17h (horário de Brasília).';
       $('leadLine').textContent = 'Sem votos apurados';
     } else {
       const diff = Math.abs(b.f - b.l), dpp = Math.abs(b.pf - b.pl);
-      $('leadLine').textContent = b.f === b.l ? 'Empate nos votos apurados'
-        : `${b.f > b.l ? 'Flávio Bolsonaro (PL)' : 'Lula (PT)'} à frente por ${fmt(diff)} votos (${fmt(dpp, 2)} p.p.)`;
+      $('leadLine').innerHTML = b.f === b.l ? 'Empate nos votos apurados'
+        : `<b>${b.f > b.l ? 'Flávio (PL)' : 'Lula (PT)'}</b> na frente por ${fmt(diff)} votos · ${fmt(dpp, 2)} p.p.`;
       $('statusLine').textContent = b.pst >= 100 ? 'Totalização concluída. Aguarde a proclamação oficial do TSE.'
-        : `Apuração em andamento · ${fmt(b.pst, 2)}% das seções totalizadas. Números parciais.`;
+        : `${fmt(b.pst, 2)}% do percurso apurado (seções totalizadas). Números parciais.`;
+      $('photo').style.display = dpp < 1 && b.pst < 100 ? '' : 'none';
     }
+    // ritmo: variação desde a leitura anterior
+    const h1 = hist[hist.length - 1], h0 = hist[hist.length - 2];
+    const mo = (id, tag, a, z) => {
+      const el = $(id);
+      if (!h0 || !h1) { el.textContent = `Ritmo ${tag} —`; return; }
+      const v = h1[a] - h0[a];
+      el.textContent = `Ritmo ${tag} ${v > 0 ? '▲' : v < 0 ? '▼' : '='} ${sgn(v, 2)} p.p.`;
+    };
+    mo('moF', 'PL', 'pf'); mo('moL', 'PT', 'pl');
+    // estados à frente
+    let sf = 0, sl = 0;
+    for (const uf of KEYS) { const s = S.t2[uf]; if (uf === 'zz' || !s || !s.vv) continue; if (s.f > s.l) sf++; else if (s.l > s.f) sl++; }
+    $('stF').textContent = sf; $('stL').textContent = sl;
+    $('sbF').style.flexGrow = sf; $('sbL').style.flexGrow = sl; $('sbM').style.flexGrow = Math.max(0, 27 - sf - sl);
+
     $('mSec').textContent = fmt(b.pst, 2) + '%'; $('pSec').style.width = Math.min(100, b.pst) + '%';
-    const cp = pc(b.comp, b.te);
+    const den = b.est || b.te; const cp = pc(b.comp, den);
     $('mComp').textContent = b.comp ? fmt(cp, 2) + '%' : '—'; $('pComp').style.width = Math.min(100, cp) + '%';
-    $('mAbs').textContent = b.comp || b.abs ? fmt(pc(b.abs, b.te), 2) + '%' : '—';
+    $('mAbs').textContent = b.comp || b.abs ? fmt(pc(b.abs, den), 2) + '%' : '—';
     $('mBr').textContent = b.tv ? fmt(pc(b.vb, b.tv), 2) + '%' : '—';
     $('mNu').textContent = b.tv ? fmt(pc(b.vn, b.tv), 2) + '%' : '—';
     $('mVal').textContent = b.tv ? fmt(b.vv) : '—';
@@ -485,9 +618,170 @@ footer code{word-break:break-all}
     if (!s.vv) return;
     const key = s.idg || (s.dg + s.hg);
     if (hist.length && hist[hist.length - 1].k === key) return;
-    hist.push({ k: key, h: (s.hg || '').slice(0, 5), pf: +s.pf.toFixed(3), pl: +s.pl.toFixed(3) });
+    hist.push({ k: key, h: (s.hg || '').slice(0, 5), pf: +s.pf.toFixed(3), pl: +s.pl.toFixed(3), p: +s.pst.toFixed(2), vf: s.f, vl: s.l });
     if (hist.length > 400) hist = hist.slice(-400);
     try { localStorage.setItem(HKEY, JSON.stringify(hist)); } catch {}
+  }
+
+  /* ---------- análises ---------- */
+  const REG = { 'Norte': ['ac','ap','am','pa','ro','rr','to'], 'Nordeste': ['al','ba','ce','ma','pb','pe','pi','rn','se'],
+    'Centro-Oeste': ['df','go','mt','ms'], 'Sudeste': ['es','mg','rj','sp'], 'Sul': ['pr','rs','sc'], 'Exterior': ['zz'] };
+  const big = x => x >= 1e6 ? fmt(x / 1e6, 1) + ' mi' : x >= 1e3 ? fmt(Math.round(x / 1e3)) + ' mil' : fmt(Math.round(x));
+  const sumReg = (src, ufs) => {
+    let f = 0, l = 0, vv = 0, st = 0, ts = 0;
+    for (const u of ufs) { const s = src[u]; if (!s) continue; f += s.f; l += s.l; vv += s.vv; st += s.st; ts += s.ts; }
+    return { f, l, vv, pf: pc(f, vv), pl: pc(l, vv), pst: pc(st, ts) };
+  };
+  function estFinal(uf) {
+    const s = S.t2[uf], a = S.t1[uf];
+    if (s && s.vv > 0 && s.est > 0 && s.te > 0 && s.est / s.te >= 0.05) return s.vv * s.te / s.est;
+    return a ? a.vv : null;
+  }
+  const leadOf = s => !s || !s.vv ? '' : s.f > s.l ? 'PL' : s.l > s.f ? 'PT' : '=';
+
+  function cardProjecao(b) {
+    let pendTot = 0, projF = 0, projL = 0; const rows = [];
+    for (const uf of KEYS) {
+      const s = S.t2[uf], t = S.t1[uf];
+      if (!s && !t) continue;
+      const has = !!(s && s.vv > 0), fin = estFinal(uf);
+      const pend = fin == null ? 0 : Math.max(0, fin - (has ? s.vv : 0));
+      let lf, ll;
+      if (has) { lf = s.pf / 100; ll = s.pl / 100; }
+      else if (t && (t.f + t.l) > 0) { lf = t.f / (t.f + t.l); ll = 1 - lf; } else { lf = ll = .5; }
+      projF += (has ? s.f : 0) + pend * lf; projL += (has ? s.l : 0) + pend * ll;
+      pendTot += pend; rows.push({ uf, pend, has, s });
+    }
+    const gap = Math.abs(b.f - b.l), trail = b.f >= b.l ? 'Lula (PT)' : 'Flávio (PL)';
+    const need = pendTot > 0 ? (pendTot + gap) / (2 * pendTot) * 100 : null;
+    const pPF = pc(projF, projF + projL), pPL = 100 - pPF;
+    const early = b.pst < 30;
+    rows.sort((x, y) => y.pend - x.pend);
+    const top = rows.slice(0, 5).map(r => {
+      const who = r.has ? (r.s.f === r.s.l ? 'empate' : `<span class="${r.s.f > r.s.l ? 'pl' : 'pt'}">${r.s.f > r.s.l ? 'PL' : 'PT'}</span> +${fmt(Math.abs(r.s.pf - r.s.pl), 1)} p.p.`) : 'sem votos ainda';
+      return `<li><span>${NAMES[r.uf]}</span><span class="v">~${big(r.pend)} · ${who}</span></li>`;
+    }).join('');
+    return `<section class="panel"><h3>Votos pendentes e projeção simples</h3>
+      <p class="lede">Estimativa por extrapolação em cada estado, sem fonte oficial.</p>
+      ${early ? '<p class="warn">Ainda cedo (menos de 30% das seções). As estimativas mudam bastante.</p>' : ''}
+      <div class="kpis">
+        <div class="kpi"><b>~${big(pendTot)}</b><span>votos válidos ainda por apurar</span></div>
+        <div class="kpi"><b>${need == null ? '—' : need > 100 ? '>100%' : fmt(need, 1) + '%'}</b><span>dos restantes que ${trail} precisa para empatar</span></div>
+        <div class="kpi"><b style="color:var(--pl)">${fmt(pPF, 2)}%</b><span>PL se cada estado mantiver o ritmo</span></div>
+        <div class="kpi"><b style="color:var(--pt)">${fmt(pPL, 2)}%</b><span>PT se cada estado mantiver o ritmo</span></div>
+      </div>
+      <div class="sub3">Onde ainda há mais votos a apurar</div><ul class="lst">${top}</ul>
+      <p class="note" style="margin:10px 0 0">Não é pesquisa nem resultado oficial. Seções de capitais e de zonas diferentes chegam em ordens diferentes, então a proporção atual pode não se repetir nos votos restantes.</p></section>`;
+  }
+
+  function cardTransf(a, b) {
+    if (!a || !a.vv) return '<section class="panel"><h3>De onde veio o crescimento</h3><p class="note">Aguardando os dados do 1º turno.</p></section>';
+    const out = Math.max(0, 100 - a.pf - a.pl), df = b.pf - a.pf, dl = b.pl - a.pl;
+    const sh = x => out > 0 ? fmt(x / out * 100, 0) + '%' : '—';
+    return `<section class="panel"><h3>De onde veio o crescimento</h3>
+      <p class="lede">O que mudou entre os votos válidos do 1º e do 2º turno.</p>
+      <div class="sl"><span>1º turno</span><span>outros candidatos somaram ${fmt(out, 1)}%</span></div>
+      <div class="stack"><i style="width:${a.pf}%;background:var(--pl)"></i><i style="width:${a.pl}%;background:var(--pt)"></i><i style="width:${out}%;background:var(--muted);opacity:.45"></i></div>
+      <div class="sl"><span>2º turno (hoje)</span><span>só os dois</span></div>
+      <div class="stack"><i style="width:${b.pf}%;background:var(--pl)"></i><i style="width:${b.pl}%;background:var(--pt)"></i></div>
+      <div class="kpis" style="margin-top:14px">
+        <div class="kpi"><b style="color:var(--pl)">${sgn(df, 2)} p.p.</b><span>Flávio · ${sh(df)} do bloco dos outros</span></div>
+        <div class="kpi"><b style="color:var(--pt)">${sgn(dl, 2)} p.p.</b><span>Lula · ${sh(dl)} do bloco dos outros</span></div>
+      </div>
+      <p class="note" style="margin:0">É a variação líquida de participação, não o caminho de cada eleitor. Mudanças de comparecimento, brancos e nulos entram na conta.</p></section>`;
+  }
+
+  function cardRegioes() {
+    const rows = Object.entries(REG).map(([nome, ufs]) => {
+      const r2 = sumReg(S.t2, ufs), r1 = sumReg(S.t1, ufs);
+      if (!r2.vv) return `<div class="reg"><div class="rh"><b>${nome}</b><span class="note">sem votos</span></div></div>`;
+      const df = r1.vv ? r2.pf - r1.pf : null, dl = r1.vv ? r2.pl - r1.pl : null;
+      return `<div class="reg"><div class="rh"><b>${nome}</b><span><span style="color:var(--pl);font-weight:700">${fmt(r2.pf, 1)}%</span> × <span style="color:var(--pt);font-weight:700">${fmt(r2.pl, 1)}%</span></span></div>
+        <div class="dual"><i style="width:${r2.pf}%;background:var(--pl)"></i><i style="width:${r2.pl}%;background:var(--pt)"></i></div>
+        <div class="rd"><span>PL ${df == null ? '—' : sgn(df, 1)} p.p.</span><span>${fmt(r2.pst, 0)}% das seções</span><span>PT ${dl == null ? '—' : sgn(dl, 1)} p.p.</span></div></div>`;
+    }).join('');
+    return `<section class="panel"><h3>Por região</h3><p class="lede">Percentual dos votos válidos e variação sobre o 1º turno.</p>${rows}</section>`;
+  }
+
+  function cardLados() {
+    const swing = [], keep = { PL: 0, PT: 0 };
+    for (const uf of KEYS) {
+      if (uf === 'zz') continue;
+      const a = S.t1[uf], b = S.t2[uf];
+      if (!a || !a.vv || !b || !b.vv) continue;
+      const l1 = leadOf(a), l2 = leadOf(b);
+      if (!l2 || l2 === '=' || l1 === '=') continue;
+      if (l1 !== l2) swing.push({ uf, l1, l2, m: Math.abs(b.pf - b.pl) }); else keep[l2]++;
+    }
+    swing.sort((x, y) => y.m - x.m);
+    const li = swing.map(s => `<li><span>${NAMES[s.uf]}</span><span class="v"><span class="${s.l1 === 'PL' ? 'pl' : 'pt'}">${s.l1}</span> → <span class="${s.l2 === 'PL' ? 'pl' : 'pt'}">${s.l2}</span> · ${fmt(s.m, 1)} p.p.</span></li>`).join('');
+    return `<section class="panel"><h3>Estados que mudaram de lado</h3>
+      <p class="lede">Compara só Flávio e Lula: quem teve mais votos no 1º turno e quem lidera agora.</p>
+      <div class="kpis"><div class="kpi"><b>${swing.length}</b><span>mudaram de lado</span></div><div class="kpi"><b>${keep.PL + keep.PT}</b><span>mantiveram o líder</span></div></div>
+      ${li ? `<ul class="lst">${li}</ul>` : '<p class="note">Nenhum estado mudou de lado até agora.</p>'}</section>`;
+  }
+
+  function cardDisputas() {
+    const rows = KEYS.filter(u => u !== 'zz').map(derive).filter(d => d && d.has && d.lider !== '=');
+    if (!rows.length) return '<section class="panel"><h3>Disputas e folgas</h3><p class="note">Sem dados por estado ainda.</p></section>';
+    const li = (arr, withPst) => arr.map(d => `<li><span>${d.nome}</span><span class="v"><span class="${d.lider === 'PL' ? 'pl' : 'pt'}">${d.lider}</span> +${fmt(Math.abs(d.margem), 1)} p.p.${withPst ? ' · ' + fmt(d.b.pst, 0) + '%' : ''}</span></li>`).join('');
+    const byAbs = [...rows].sort((x, y) => Math.abs(x.margem) - Math.abs(y.margem));
+    const pl = rows.filter(d => d.lider === 'PL').sort((x, y) => y.margem - x.margem).slice(0, 3);
+    const pt = rows.filter(d => d.lider === 'PT').sort((x, y) => x.margem - y.margem).slice(0, 3);
+    return `<section class="panel"><h3>Disputas e folgas</h3><p class="lede">Diferença em p.p. dos votos válidos (e % de seções apuradas nas mais apertadas).</p>
+      <div class="sub3">Mais apertados</div><ul class="lst">${li(byAbs.slice(0, 5), true)}</ul>
+      <div class="sub3">Maiores vantagens do PL</div><ul class="lst">${li(pl) || '<li><span class="note">—</span></li>'}</ul>
+      <div class="sub3">Maiores vantagens do PT</div><ul class="lst">${li(pt) || '<li><span class="note">—</span></li>'}</ul></section>`;
+  }
+
+  function cardHorario() {
+    const toMin = h => { const [x, y] = String(h).split(':').map(Number); return x * 60 + y; };
+    const H = hist.filter(x => x.h && !isNaN(toMin(x.h)));
+    const head = '<section class="panel"><h3>Apuração por horário</h3>';
+    const foot = '<p class="note" style="margin:10px 0 0">Mostra quando os votos foram apurados, não quando foram dados. O TSE não registra a hora de cada voto (o voto é secreto) e a votação termina às 17h, horário de Brasília. Horários em Brasília, guardados enquanto o painel fica aberto neste aparelho.</p></section>';
+    if (H.length < 2) return head + '<p class="lede">Aqui aparece o que mudou desde as 19h, a partir das leituras que o painel for guardando.</p><p class="note">Ainda há poucas leituras. Deixe o painel aberto durante a apuração.</p>' + foot;
+    const last = H[H.length - 1];
+    const before = [...H].reverse().find(x => toMin(x.h) <= 19 * 60);
+    const base = before || H[0];
+    const usedFirst = !before;
+    const dpf = last.pf - base.pf, dpl = last.pl - base.pl;
+    const dp = last.p != null && base.p != null ? last.p - base.p : null;
+    const dvf = last.vf != null && base.vf != null ? last.vf - base.vf : null;
+    const dvl = last.vl != null && base.vl != null ? last.vl - base.vl : null;
+    let rows = '';
+    for (let h = 17; h <= 23; h++) {
+      const r = [...H].reverse().find(x => toMin(x.h) <= h * 60);
+      if (!r || h * 60 > toMin(last.h)) continue;
+      rows += `<tr><td>${h}h</td><td style="color:var(--pl)">${fmt(r.pf, 2)}%</td><td style="color:var(--pt)">${fmt(r.pl, 2)}%</td><td>${r.p != null ? fmt(r.p, 1) + '%' : '—'}</td></tr>`;
+    }
+    return head + `<p class="lede">Desde ${usedFirst ? 'a primeira leitura guardada (' + base.h + ')' : 'as 19h (leitura das ' + base.h + ')'} até ${last.h}.</p>
+      <div class="kpis">
+        <div class="kpi"><b style="color:var(--pl)">${sgn(dpf, 2)} p.p.</b><span>Flávio${dvf != null ? ' · ' + sgn(dvf) + ' votos apurados' : ''}</span></div>
+        <div class="kpi"><b style="color:var(--pt)">${sgn(dpl, 2)} p.p.</b><span>Lula${dvl != null ? ' · ' + sgn(dvl) + ' votos apurados' : ''}</span></div>
+        <div class="kpi"><b>${dp != null ? sgn(dp, 1) + ' p.p.' : '—'}</b><span>de seções totalizadas no período</span></div>
+        <div class="kpi"><b>${fmt(Math.abs(last.pf - last.pl), 2)} p.p.</b><span>diferença agora (era ${fmt(Math.abs(base.pf - base.pl), 2)})</span></div>
+      </div>
+      ${rows ? `<table class="mini"><thead><tr><th>Até</th><th>Flávio</th><th>Lula</th><th>Seções</th></tr></thead><tbody>${rows}</tbody></table>` : ''}` + foot;
+  }
+
+  function cardParticipacao(a, b) {
+    const m = s => { if (!s) return null; const den = s.est || s.te;
+      return { comp: s.comp ? pc(s.comp, den) : null, abs: s.comp || s.abs ? pc(s.abs, den) : null, br: s.tv ? pc(s.vb, s.tv) : null, nu: s.tv ? pc(s.vn, s.tv) : null }; };
+    const x1 = m(a), x2 = m(b);
+    const row = (nome, k) => {
+      const v1 = x1 && x1[k] != null ? x1[k] : null, v2 = x2 && x2[k] != null ? x2[k] : null;
+      return `<tr><td>${nome}</td><td>${v1 == null ? '—' : fmt(v1, 2) + '%'}</td><td>${v2 == null ? '—' : fmt(v2, 2) + '%'}</td><td>${v1 == null || v2 == null ? '—' : sgn(v2 - v1, 2)}</td></tr>`;
+    };
+    return `<section class="panel"><h3>Participação</h3><p class="lede">Comparecimento, abstenção e votos em branco e nulos.</p>
+      <table class="mini"><thead><tr><th></th><th>1º turno</th><th>2º turno</th><th>Δ p.p.</th></tr></thead><tbody>
+      ${row('Comparecimento', 'comp')}${row('Abstenção', 'abs')}${row('Brancos', 'br')}${row('Nulos', 'nu')}</tbody></table>
+      <p class="note" style="margin:10px 0 0">No 2º turno, calculado sobre as seções já totalizadas. A comparação melhora conforme a apuração avança.</p></section>`;
+  }
+
+  function renderAnalyses() {
+    const el = $('acards'), b = S.t2.br, a = S.t1.br;
+    if (!b || !b.vv) { el.innerHTML = '<section class="panel"><p class="note">As análises aparecem quando começarem a chegar votos.</p></section>'; return; }
+    el.innerHTML = cardProjecao(b) + cardTransf(a, b) + cardRegioes() + cardLados() + cardDisputas() + cardHorario() + cardParticipacao(a, b);
   }
 
   /* ---------- controle ---------- */
@@ -498,7 +792,7 @@ footer code{word-break:break-all}
     const b = $('errbox'); b.style.display = 'block'; b.innerHTML = html;
     $('chipStatus').className = 'chip err'; $('chipStatus').textContent = 'Sem conexão com o TSE';
   }
-  function renderAll() { renderNational(); renderDetail(); renderTable(); renderChart(); paintMap(); }
+  function renderAll() { renderNational(); renderDetail(); renderTable(); renderChart(); paintMap(); renderAnalyses(); }
 
   let busy = false, nextAt = 0, t1Done = Object.keys(S.t1).length >= ALL.length;
   async function refresh() {
